@@ -1,43 +1,54 @@
-# 🔁 Binance Testnet Trading Bot
-
-A simplified Python-based trading bot that can place **market** and **limit** orders on the **Binance USDT-M Futures Testnet** using the official Binance API.
-
-## 📌 Features
-
-* ✅ Place **market** and **limit** orders
-* ✅ Supports both **buy** and **sell** sides
-* ✅ Command-Line Interface (CLI) for user interaction
-* ✅ Logs all API calls and errors
-* ✅ Configurable with `.env` file
-* ✅ Modular & clean structure
-* 🏆 Bonus-ready: Easy to extend for Stop-Limit, TWAP, OCO, or a simple GUI
+Here’s a more **detailed and professional version** of your `README.md` documentation for the **Binance Testnet Trading Bot** project. This elaborates on the getting started process, setup steps, usage, and customization.
 
 ---
 
-## 🧩 Requirements
+# 🪙 Binance Testnet Trading Bot
 
-* Python 3.7+
-* Binance Futures Testnet account
-* API Key & Secret (from testnet)
+A **simple automated trading bot** that connects to the **Binance Testnet**. Perfect for experimenting with strategies in a risk-free environment using Binance’s Futures or Spot testnet APIs.
 
 ---
 
-## 🛠 Installation
+## ⚙️ Features
+
+* ✅ Connects to **Binance Spot/Futures Testnet**
+* 🛒 Places **market buy/sell orders**
+* 🔒 Loads **API keys securely** from a `.env` file
+* 🧠 Modular code for plugging in **custom trading strategies**
+* 🧪 Ideal for **strategy testing and learning algorithmic trading**
+
+---
+
+## 🧰 Tech Stack
+
+| Component        | Description                                 |
+| ---------------- | ------------------------------------------- |
+| **Python 3.x**   | Core programming language                   |
+| `python-binance` | Binance API wrapper for Python              |
+| `dotenv`         | Loads environment variables securely        |
+| `requests`       | For handling REST API calls (optional)      |
+| `logging`        | Custom logging system for status and errors |
+
+---
+
+## 🚀 Getting Started
 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/shreyash201020/binance-test-bot.git
-cd binance-test-bot
+git clone https://github.com/shreyash201020/binance-testnet-bot.git
+cd binance-testnet-bot
 ```
 
-### 2. Set up a Virtual Environment (optional but recommended)
+### 2. Create and Activate Virtual Environment (Optional but Recommended)
 
 ```bash
+# For Windows
 python -m venv venv
-venv\Scripts\activate   # On Windows
-# OR
-source venv/bin/activate  # On macOS/Linux
+venv\Scripts\activate
+
+# For macOS/Linux
+python3 -m venv venv
+source venv/bin/activate
 ```
 
 ### 3. Install Dependencies
@@ -46,130 +57,103 @@ source venv/bin/activate  # On macOS/Linux
 pip install -r requirements.txt
 ```
 
----
-
-## 🔐 Environment Configuration
-
-1. Create a `.env` file in the root directory.
+Or install manually:
 
 ```bash
-touch .env
+pip install python-binance python-dotenv
 ```
 
-2. Add your API credentials and base URL:
+### 4. Set Up `.env` File
+
+Create a `.env` file in the project root with the following contents:
 
 ```env
 API_KEY=your_testnet_api_key
 API_SECRET=your_testnet_api_secret
-BASE_URL=https://testnet.binancefuture.com
 ```
 
-> ⚠️ You must register at [Binance Futures Testnet](https://testnet.binancefuture.com/) and generate your keys under the **USDT-M Futures** section.
+> 🔐 **Note**: These should be testnet credentials from [Binance Testnet](https://testnet.binancefuture.com/)
 
 ---
 
-## 🚀 How to Run
+## 🏁 Running the Bot
+
+Run the main script:
 
 ```bash
 python main.py
 ```
 
-You'll see a prompt:
+You should see logs like:
 
-```text
-Welcome to Binance Testnet Trading Bot
-Enter order type (market/limit): 
-```
-
-Follow the prompts to place your order:
-
-* Choose order type: `market` or `limit`
-* Choose side: `buy` or `sell`
-* Enter symbol: `BTCUSDT`, `ETHUSDT`, etc.
-* Enter quantity: e.g., `0.001`
-* If limit order, enter price too
-
-Example interaction:
-
-```
-Enter order type (market/limit): market
-Enter symbol (e.g., BTCUSDT): BTCUSDT
-Enter side (buy/sell): buy
-Enter quantity: 0.001
+```bash
+✅ Environment variables loaded successfully.
+📡 Connecting to Binance Testnet...
+✅ Client initialized.
 ```
 
 ---
 
-## 📁 Project Structure
+## 🛠️ Project Structure
 
-```
-binance-test-bot/
+```plaintext
+binance-testnet-bot/
 │
-├── main.py                 # Entry point
-├── trading_bot.py          # Core trading logic
-├── config.py               # Environment and API setup
-├── utils.py                # Logging and helpers
-├── .env                    # API credentials (not pushed to GitHub)
-├── requirements.txt        # Required libraries
-└── README.md               # Project documentation
+├── main.py              # Entry point - initialize client and execute orders
+├── .env                 # Store your API keys here (excluded from Git)
+├── requirements.txt     # Python dependencies
+├── trading_logic.py     # (Optional) For strategy extension
+└── utils.py             # (Optional) Logging, error handling, etc.
 ```
 
 ---
 
-## 📄 Log Files
+## 🔁 Sample Usage (Market Order)
 
-* All API requests, responses, and errors are logged in `bot.log`.
+```python
+from binance.um_futures import UMFutures
 
-Example entry:
-
-```
-2025-07-27 10:30:41 - INFO - Market buy order placed: {'orderId': ..., 'status': 'FILLED'}
+client = UMFutures(api_key, api_secret)
+client.new_order(symbol='BTCUSDT', side='BUY', type='MARKET', quantity=0.001)
 ```
 
 ---
 
-## 🧪 Testnet Trading Dashboard
+## 🧪 Testnet Credentials
 
-Use this to verify your trades visually:
+To get test credentials:
 
-🔗 [https://testnet.binancefuture.com/en/futures/BTCUSDT](https://testnet.binancefuture.com/en/futures/BTCUSDT)
-
----
-
-## 🧠 Bonus Ideas (Optional)
-
-Add one or more of the following to stand out:
-
-* Stop-limit or OCO orders (`client.create_oco_order`)
-* TWAP/Grid algorithmic order
-* Frontend using Flask or Tkinter
-* Auto-cancel stale orders
-* Risk management (e.g., stop loss)
+1. Go to [Binance Futures Testnet](https://testnet.binancefuture.com/)
+2. Register/Login
+3. Generate API key and secret
+4. Paste into your `.env` file
 
 ---
 
-## 📬 Submit Your Work
+## 🧩 Add Your Own Strategy
 
-Send your:
+You can define your logic in a new file like `strategy.py`:
 
-* ✅ GitHub repo link
-* ✅ Log file (`bot.log`)
-* ✅ Resume (optional)
-
-To:
-
-```
-📧 saami@bajarangs.com  
-📧 nagasai@bajarangs.com  
-📧 chetan@bajarangs.com  
-CC ➤ sonika@primetrade.ai  
+```python
+def simple_strategy(market_data):
+    if market_data['price'] > some_value:
+        return 'SELL'
+    else:
+        return 'BUY'
 ```
 
-Subject: **"Junior Python Developer – Crypto Trading Bot"**
+Then call this logic from `main.py` and trigger orders accordingly.
 
 ---
 
-## 👨‍💻 Author
+## 🤝 Contributing
 
-**Shreyash Chaudhari**
-GitHub: [shreyash201020](https://github.com/shreyash201020)
+Pull requests and ideas are welcome! Please fork the repo and open an issue or PR.
+
+---
+
+## 📜 License
+
+MIT License © 2025 [Shreyash Chaudhari](https://github.com/shreyash201020)
+
+---
