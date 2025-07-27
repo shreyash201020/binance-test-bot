@@ -148,8 +148,8 @@ Pull requests and ideas are welcome! Please fork the repo and open an issue or P
 
 ---
 
-## 📜 License
+## 🚪 Access & Rights
 
-MIT License © 2025 [Shreyash Chaudhari](https://github.com/shreyash201020)
+© 2025 [Shreyash Chaudhari](https://github.com/shreyash201020)
 
 ---
