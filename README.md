@@ -1,7 +1,3 @@
-Here’s a more **detailed and professional version** of your `README.md` documentation for the **Binance Testnet Trading Bot** project. This elaborates on the getting started process, setup steps, usage, and customization.
-
----
-
 # 🪙 Binance Testnet Trading Bot
 
 A **simple automated trading bot** that connects to the **Binance Testnet**. Perfect for experimenting with strategies in a risk-free environment using Binance’s Futures or Spot testnet APIs.
